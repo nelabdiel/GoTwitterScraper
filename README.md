@@ -9,6 +9,6 @@ The last step will be to update a calendar to add the events.
 
 The Binary was built for darwin64. Make sure to add a json file _tweeter.json_ to /var/ 
 
-_tweetwer.json_ should look like this:
+_tweeter.json_ should look like this:
 
 { "apiKey": "XXXX", "apiSecret": "XXXX", "accessToken": "XXXX", "accessTokenSecret": "XXXX" }
