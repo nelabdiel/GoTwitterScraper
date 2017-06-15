@@ -19,7 +19,7 @@ var secrets struct {
 //Main function that extracts links from tweets.
 func main() {
 	//Opening json with twitter credentials.
-    twitterSecrets, err := os.Open("/path/to/credentials.json")
+    twitterSecrets, err := os.Open("/Users/Nel/Desktop/Code/go/variables.json")
     if err != nil {
         fmt.Println(err.Error())
     }
@@ -39,8 +39,8 @@ func main() {
     result, err := api.GetSearch("charleston AND event -RT", v)
 	//Go through tweets
     for _, tweet := range result.Statuses {
-		//Check if there is a link in tweet.
-		for _, link := range strings.Split(tweet.Text, " ") {
+	//Check if there is a link in tweet.
+	for _, link := range strings.Split(tweet.Text, " ") {
             hasLink := strings.Index(link, "http") == 0
             if hasLink {
 				//Print link.
