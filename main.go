@@ -19,7 +19,7 @@ var secrets struct {
 //Main function that extracts links from tweets.
 func main() {
 	//Opening json with twitter credentials.
-    twitterSecrets, err := os.Open("/Users/Nel/Desktop/Code/go/variables.json")
+    twitterSecrets, err := os.Open("/var/tweeter.json")
     if err != nil {
         fmt.Println(err.Error())
     }
