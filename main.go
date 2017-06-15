@@ -4,6 +4,7 @@ import (
     "os"
     "encoding/json"
     "net/url"
+    "strings"
     "github.com/ChimeraCoder/anaconda"
 )
 
@@ -31,6 +32,13 @@ func main() {
     v := url.Values{}
     v.Set("count", "30")
     result, err := api.GetSearch("charleston AND event -RT", v)
-    for _, tweet := range result.Statuses {fmt.Println(tweet.Text)}
+    for _, tweet := range result.Statuses {
+	for _, link := range strings.Split(tweet.Text, " ") {
+            hasLink := strings.Index(link, "http") == 0
+            if hasLink {
+                fmt.Println(link)
+            }
+        }
+    }
 }
 
