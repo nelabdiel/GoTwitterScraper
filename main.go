@@ -6,6 +6,10 @@ import (
     "net/url"
     "strings"
     "github.com/ChimeraCoder/anaconda"
+	"github.com/yhat/scrape"
+    "golang.org/x/net/html/atom"
+	"golang.org/x/net/html"
+	"net/http"
 )
 
 //Twitter credentials
@@ -34,7 +38,7 @@ func main() {
     api := anaconda.NewTwitterApi(secrets.AccessToken,secrets.AccessTokenSecret)
 
     v := url.Values{}
-    v.Set("count", "30")
+    v.Set("count", "50")
 	//Search for tweets that contain charleston and event.
     result, err := api.GetSearch("charleston AND event -RT", v)
 	//Go through tweets
@@ -44,7 +48,22 @@ func main() {
             hasLink := strings.Index(link, "http") == 0
             if hasLink {
 				//Print link.
-                fmt.Println(link)
+                //fmt.Println(link)
+				resp, err := http.Get(link)
+
+                // Parse the page
+                root, err := html.Parse(resp.Body)
+                if err != nil {
+                    // handle error
+                }
+                // Search for the title
+                title, ok := scrape.Find(root, scrape.ByTag(atom.Title))
+                if ok {
+                    // Print the title
+                    fmt.Println(scrape.Text(title))
+                }
+
+
             }
         }
     }
