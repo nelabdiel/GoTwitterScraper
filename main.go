@@ -3,6 +3,7 @@ import (
     "fmt"
     "os"
     "encoding/json"
+    "regexp"
     "net/url"
     "strings"
     "github.com/ChimeraCoder/anaconda"
@@ -59,8 +60,22 @@ func main() {
                 // Search for the title
                 title, ok := scrape.Find(root, scrape.ByTag(atom.Title))
                 if ok {
-                    // Print the title
-                    fmt.Println(scrape.Text(title))
+					// Print the title
+					//fmt.Println(scrape.Text(title))
+					scrapedTitle := scrape.Text(title)
+					months1 := "(Jan(uary)?|Feb(ruary)?|Mar(ch)?|Apr(il)?|May|Jun(e)?"
+					months2 := "|Jul(y)?|Aug(ust)?|Sep(tember)?|Oct(ober)?|Nov(ember)?|Dec(ember)?)"
+					dayYear := `\s+\d{1,2},\s+\d{4}`
+					dateFormat := months1 + months2 + dayYear
+					//fmt.Println(dateFormat)
+					r, _ := regexp.Compile(dateFormat)
+					//fmt.Println(scrapedTitle)
+					date := r.FindString(scrapedTitle)
+					if len(date) > 0 {
+					fmt.Println(scrapedTitle)
+					fmt.Println(date)
+					fmt.Println(link)
+				}
                 }
 
 
