@@ -1,18 +1,19 @@
-# Building an events Twitter scraper to familiarize myself with Go.
+# An event finder script that uses the Twitter API to find events in the Charleston Area, 
+parses the data and adds the events to your Google Calendar with the use of the Google API.
 
-Done: As it is right now it looks for Tweets that mentions the words _Charleston_ and _Event_ 
-and that are not retweets and it extracts the links.
+### Built in Go, the idea was for me to familiarized myself with how to write Go code. 
 
-Done: The next step will be to parse the links and extract information about the events.
+The Binary was built for darwin64. 
 
-_It extracts the title of the page which often contains the information needed._
+Make sure to add _tweeter.json_ and _google.json_ to /var/ 
 
-To Do: The last step will be to update a calendar to add the events.
-
-
-
-The Binary was built for darwin64. Make sure to add a json file _tweeter.json_ to /var/ 
+Make sure to register your app with Twitter in order to get your credentials.
 
 _tweeter.json_ should look like this:
 
 { "apiKey": "XXXX", "apiSecret": "XXXX", "accessToken": "XXXX", "accessTokenSecret": "XXXX" }
+
+For _google.json_: 
+
+Follow the instructions on step 1 from https://developers.google.com/google-apps/calendar/quickstart/go ,
+rename the file google.json instead of client_secret.json and move it to /var/  
