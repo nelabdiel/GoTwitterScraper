@@ -1,5 +1,4 @@
-# An event finder script that uses the Twitter API to find events in the Charleston Area, 
-parses the data and adds the events to your Google Calendar with the use of the Google API.
+# An event finder script that uses the Twitter API to find events in the Charleston Area, parses the data and adds the events to your Google Calendar with the use of the Google API.
 
 ### Built in Go, the idea was for me to familiarized myself with how to write Go code. 
 
